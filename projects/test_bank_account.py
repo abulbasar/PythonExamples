@@ -2,6 +2,13 @@ import unittest
 import math
 from bank_account import BankAccount, InvalidDepositAmountError, InvalidWithdrawalAmountError
 
+"""
+    Exercise: 
+    1. write a test method to test equality of bank account record with another
+    2. write a test method to test whether acct_id are unique when two records are created
+    3. write a test method to verify the output of __repr__ function
+
+"""
 
 class TestBankAccount(unittest.TestCase):
 
