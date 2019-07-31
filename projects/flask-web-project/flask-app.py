@@ -40,7 +40,7 @@ def get_movie_by_id(movie_id):
     for movie in movies:
         if movie["movieId"] == movie_id:
             return movie
-    return dict(status = "ERROR", message = f"No movie has been found with {movie_id}")
+    return dict(status = "ERROR", message = f"No movie has been found with {movie_id}"), 404
 
 
 if __name__ == '__main__':
