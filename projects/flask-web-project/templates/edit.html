@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <style>
+        input[type='text'], select{
+            width: 300px;
+        }
+        a,a:visited {
+            text-decoration: none;
+            color:#FEF;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="bg-black washed-blue pa2">
+          <a href="/" target="_self"><h1>Stock Editor</h1></a>
+      </div>
+    <div class="fl w-100 pa5">
+        <div class="fl w-10">
+            <p />
+        </div>
+
+        <div class="fl w-80">
+            <form action = "/save-stock" method = "POST">
+                <input type = "hidden" id="id" name = "id" value="{{record.id}}"/>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Date</label></div>
+                    <div class="fl w-80"><input type = "text" id="date" name = "date" value="{{record.date}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">High</label></div>
+                    <div class="fl w-80"><input type = "text" id="high" name = "high" value="{{record.high}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Low</label></div>
+                    <div class="fl w-80"><input type = "text" id="low" name = "low" value="{{record.low}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Open</label></div>
+                    <div class="fl w-80"><input type = "text" id="open" name = "open" value="{{record.open}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Close</label></div>
+                    <div class="fl w-80"><input type = "text" id="close" name = "close" value="{{record.close}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Adj Close</label></div>
+                    <div class="fl w-80"><input type = "text" id="adjclose" name = "adjclose" value="{{record.adjclose}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Volume</label></div>
+                    <div class="fl w-80"><input type = "text" id="volume" name = "adjclose" value="{{record.volume}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="date">Symbol</label></div>
+                    <div class="fl w-80"><input type = "text" id="symbol" name = "symbol" value="{{record.symbol}}"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <input type="submit" value = "Submit">
+                </div>
+            </form>
+        </div>
+        <div class="fl w-10">
+            <p ></p>
+        </div>
+    </div>
+  </body>
+</html>
