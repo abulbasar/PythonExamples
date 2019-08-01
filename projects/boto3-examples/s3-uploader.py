@@ -1,4 +1,4 @@
-from boto3 import client, resource
+
 
 import boto3
 import os
@@ -26,7 +26,6 @@ for bucket in s3.buckets.all():
     
 """
 
-
 dir_name = "/data/movielens"
 
 for fname in os.listdir(dir_name):
@@ -35,7 +34,7 @@ for fname in os.listdir(dir_name):
     if os.path.isfile(path) and fname.endswith(".csv"):
         start_time = datetime.now()
         bucket.upload_file(path, f"movie-lens-2/{fname}")
-        duration = (datetime.now() - start_time).microseconds/1000000
+        duration = (datetime.now() - start_time).seconds
         print(f"Uploaded: {path} took: {duration} seconds")
 
 
