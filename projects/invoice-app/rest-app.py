@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import reqparse, Api, Resource
 from sqlalchemy.orm import sessionmaker
 from models import Base
 import models
@@ -30,7 +30,9 @@ session = session_maker()
 
 class AddressListController(Resource):
     def get(self):
-        return session.query(models.Address).all()
+        addresses = session.query(models.Address).all()
+        addresses = [v.as_dict() for v in addresses]
+        return addresses
 
     post_parser = (reqparse
                    .RequestParser(bundle_errors=True)
@@ -59,6 +61,9 @@ class AddressController(Resource):
 
     def get(self, id):
         address = session.query(models.Address).get(int(id))
+        if address is None:
+            return {"status": "Failed", "message": f"Record does not exists with id {id}"}, 404
+
         return address.as_dict()
 
     patch_parser = (reqparse
@@ -86,6 +91,8 @@ class AddressController(Resource):
 
     def delete(self, id):
         address = session.query(models.Address).get(int(id))
+        if address is None:
+            return {"status": "Failed", "message": f"Record does not exists with id {id}"}, 404
         session.delete(address)
         session.flush()
         return {"status": "Success"}
