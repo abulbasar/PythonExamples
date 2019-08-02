@@ -47,6 +47,8 @@ def start():
     p1.join()
     p2.join()
 
+    print("Main thread finished")
+
 
 if __name__ == "__main__":
     start()

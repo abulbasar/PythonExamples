@@ -5,11 +5,6 @@ from queue import Queue
 import random
 
 
-"""
-
-
-"""
-
 
 def dispatcher(queue:Queue):
     thread_name = threading.current_thread().name

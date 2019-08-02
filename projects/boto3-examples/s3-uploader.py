@@ -12,8 +12,8 @@ you can generate a new id from aws web console.
 """
 
 session = boto3.Session(
-    aws_access_key_id="AKIAZHJXBAVUDQ7T3OMZ",
-    aws_secret_access_key="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"
+    aws_access_key_id="AKIAZHJX...",
+    aws_secret_access_key="Z06uaCAD..."
 )
 
 s3 = session.resource("s3")

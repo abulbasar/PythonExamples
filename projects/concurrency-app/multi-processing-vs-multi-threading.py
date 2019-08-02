@@ -62,7 +62,7 @@ def start_threads():
     t2.join()
 
 
-def no_threaded():
+def single_threaded():
     for _ in range(200000):
         message = "".join(random.choices(string.ascii_letters, k=1000))
         hashlib.sha256(message.encode("utf-8")).hexdigest()
@@ -73,4 +73,4 @@ if __name__ == "__main__":
     # Uncomment one of the method call at a time and compute time.
     start_processes()
     #start_threads()
-    #no_threaded()
+    #single_threaded()
