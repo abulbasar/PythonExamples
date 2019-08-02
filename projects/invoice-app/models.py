@@ -17,6 +17,9 @@ class User(Base):
     email = Column(String(50), nullable = False)
     address_id = Column(Integer, ForeignKey('address.id'))
 
+    def as_dict(self):
+        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
+
     @property
     def name(self):
         return "{} {}".format(self.first_name, self.last_name)
@@ -53,6 +56,9 @@ class Account(Base):
     address_id = Column(Integer, ForeignKey('address.id'))
     address = relationship("Address")
 
+    def as_dict(self):
+        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
+
     def __repr__(self):
         return "[Account] name: {}".format(self.name)
 
@@ -66,6 +72,9 @@ class Product(Base):
     list_price = Column(Float)
     inventory = Column(Integer)
     tax_rate = Column(Float)
+
+    def as_dict(self):
+        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
 
     def __repr__(self):
         return "[Product] name: {}".format(self.name)
@@ -90,6 +99,9 @@ class Invoice(Base):
 
     account = relationship("Account")
 
+    def as_dict(self):
+        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
+
     def __repr__(self):
         return "[Invoice] account name: {}".format(self.account.name)
 
@@ -106,6 +118,9 @@ class InvoiceLineItem(Base):
 
     invoice = relationship("Invoice")
     product = relationship("Product")
+
+    def as_dict(self):
+        return {c.name: str(getattr(self, c.name)) for c in self.__table__.columns}
 
     @property
     def total_price(self):

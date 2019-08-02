@@ -7,6 +7,7 @@ import models
 import sqlalchemy
 import logging
 from logging.config import fileConfig
+
 fileConfig('logging.ini')
 logger = logging.getLogger()
 
@@ -43,6 +44,7 @@ class AddressListController(Resource):
                    .add_argument("country", type=str, required=False, location="json"))
 
     def post(self):
+        logger.info(f"Address create request for {id}")
         args = self.post_parser.parse_args()
         logger.info("args", args)
         address = models.Address()
@@ -60,8 +62,10 @@ class AddressListController(Resource):
 class AddressController(Resource):
 
     def get(self, id):
+        logger.info(f"Abul **** Address get request for {id}")
         address = session.query(models.Address).get(int(id))
         if address is None:
+            logger.warning(f"Get request for a non existing address: {id}")
             return {"status": "Failed", "message": f"Record does not exists with id {id}"}, 404
 
         return address.as_dict()
@@ -75,6 +79,7 @@ class AddressController(Resource):
                .add_argument("country", type=str, required=False, location="json"))
 
     def patch(self, id):
+        logger.info(f"Address update request for {id}")
         args = self.patch_parser.parse_args()
         logger.info("args", args)
 
@@ -90,8 +95,10 @@ class AddressController(Resource):
         return {"status": "Success"}
 
     def delete(self, id):
+        logger.info(f"Address delete request for {id}")
         address = session.query(models.Address).get(int(id))
         if address is None:
+            logger.warning(f"Get request for a non existing address: {id}")
             return {"status": "Failed", "message": f"Record does not exists with id {id}"}, 404
         session.delete(address)
         session.flush()
